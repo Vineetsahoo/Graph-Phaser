@@ -23,6 +23,17 @@ export default function handler(req, res) {
     return res.status(200).end();
   }
 
+  if (req.method === 'GET') {
+    return res.status(200).json({
+      message: 'BFHL API is live. Use POST with JSON body: { "data": ["A->B", "B->C"] }',
+      endpoint: '/bfhl',
+      method: 'POST',
+      example_request: {
+        data: ['A->B', 'B->C']
+      }
+    });
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed. Use POST.' });
   }
